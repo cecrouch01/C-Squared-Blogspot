@@ -1,0 +1,32 @@
+[
+    {
+        "user_id": "1",
+        "content": "Euphonium is the best",
+        "blog_id": "1"
+    },
+    {
+        "user_id": "2",
+        "content": "I love it when I hear the euphonium being played in the basement",
+        "blog_id": "1"
+    },
+    {
+        "user_id": "3",
+        "content": "I wish I could play the euphonium",
+        "blog_id": "1"
+    },
+    {
+        "user_id": "4",
+        "content": "You are right brass instruments are so much better than woodwinds!",
+        "blog_id": "2"
+    },
+    {
+        "user_id": "5",
+        "content": "I am so happy my son played a brass instrument instead of a woodwind instrument!",
+        "blog_id": "2"
+    },
+    {
+        "user_id": "6",
+        "content": "I love brass instruments!",
+        "blog_id": "2"
+    }
+]
