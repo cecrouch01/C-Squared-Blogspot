@@ -21,10 +21,6 @@ BlogPost.init({
         type: DataTypes.STRING,
         allowNull: true,
     },
-    date_created: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    },
     user_id: {
         type: DataTypes.INTEGER,
         references: {
@@ -36,7 +32,10 @@ BlogPost.init({
 {
     sequelize,
     modelName: 'blog_post',
-    tableName: 'blog_post'
+    tableName: 'blog_post',
+    timestamps: true,
+    createdAt: 'date_created',
+    updatedAt: false
 })
 
 module.exports = BlogPost;
