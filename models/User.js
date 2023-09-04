@@ -9,7 +9,7 @@ class User extends Model {
 }
 
 User.init({
-    user_id: {
+    id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -24,7 +24,7 @@ User.init({
     },
     password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
         validate: {
             len: [8]
         },
@@ -36,12 +36,9 @@ User.init({
             newUserData.password = await bcrypt.hash(newUserData.password, 10)
             return newUserData
         }
-    }
-},
-{
+    },
     sequelize,
-    timestamps: false,
-    modelName: 'user',
+    modelName: 'users'
 },
 );
 module.exports = User;
