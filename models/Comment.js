@@ -22,10 +22,6 @@ Comment.init({
         allowNull: false,
 
     },
-    date_created: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    },
     blog_id: {
         type: DataTypes.INTEGER,
         references: {
@@ -37,6 +33,9 @@ Comment.init({
 {
     sequelize,
     modelName: 'comment',
+    timestamps: true,
+    createdAt: 'date_created',
+    updatedAt: false
 },
 );
 
