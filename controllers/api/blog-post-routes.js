@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const { BlogPost, User } = require('../../models');
+const { BlogPost, Comment, User } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 // This is the /api/blog-posts endpoint
 
-//Blog Posts need: get all, get one?, create a blog and delete a blog
 //This will get all of the blog posts
 router.get('/', async (req, res) => {
     try {
         const blogPostData = await BlogPost.findAll({
             include: [{ 
-                model: User
+                model: User,
+                attributes: ["username"]
             }]
         });
         res.status(200).json(blogPostData)
@@ -19,12 +19,20 @@ router.get('/', async (req, res) => {
     }
 });
 
-//This will get a single blog post
+//This will get a single blog post with its comments
 router.get('/:id', async (req, res) => {
     try {
         const singleBlogPostData = await BlogPost.findByPk(req.params.id, {
             include: [{ 
-                model: User
+                model: User,
+                attributes: ["username"]
+            }, 
+            {
+                model: Comment,
+                include: {
+                    model: User,
+                    attributes: ["username"]
+                }
             }]
         });
         if(singleBlogPostData !== null){
@@ -36,6 +44,7 @@ router.get('/:id', async (req, res) => {
         res.status(500).json(err)
     }
 });
+
 //This will create a blog post
 router.post('/', withAuth, async (req, res) => {
     try {
@@ -47,7 +56,8 @@ router.post('/', withAuth, async (req, res) => {
     } catch(err){
         res.status(400).json(err)
     }
-})
+});
+
 //This will delete a blog post
 router.delete('/:id', withAuth, async (req, res) => {
     try {
@@ -58,13 +68,13 @@ router.delete('/:id', withAuth, async (req, res) => {
             }
         });
         if(!deletedBlogPost) {
-            res.status(404).json({ message: 'No project found with this id'});
+            res.status(404).json({ message: 'No blog post found with this id'});
             return;
         }
         res.status(200).json({message: 'This blog post has been deleted'})
     } catch(err) {
         res.status(500).json(err);
     }
-})
+});
 
 module.exports = router;
