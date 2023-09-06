@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { BlogPost, Comment, User } = require('../../models');
+const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 // This is the /api/comments endpoint
