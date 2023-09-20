@@ -4,3 +4,6 @@
 #signup-password-warning {
     color: red;
 }
+.id {
+    display: none;
+}
