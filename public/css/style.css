@@ -1,0 +1,6 @@
+#signup-div {
+    display: none;
+}
+#signup-password-warning {
+    color: red;
+}

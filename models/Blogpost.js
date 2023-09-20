@@ -36,6 +36,6 @@ BlogPost.init({
     timestamps: true,
     createdAt: 'date_created',
     updatedAt: false
-})
+});
 
 module.exports = BlogPost;
