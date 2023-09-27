@@ -7,3 +7,6 @@
 .id {
     display: none;
 }
+#blog-form, .edit-blog {
+    display: none;
+}

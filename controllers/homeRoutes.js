@@ -12,7 +12,6 @@ router.get('/', async (req, res) => {
                 }
             ]
         });
-        // console.log(blogPostData)
         const blogs = blogPostData.map((singleBlog) => singleBlog.get({ plain: true}));
         res.render('homepage', {
             blogs,
@@ -24,7 +23,15 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
+    const userBlogPostData = await BlogPost.findAll({
+        where: {
+            user_id: req.session.user_id
+        }
+    });
+    const userBlogs = userBlogPostData.map((ub) => ub.get({ plain: true }))
+    
     res.render('dashboard', {
+        userBlogs,
         logged_in: req.session.logged_in
     })
 });

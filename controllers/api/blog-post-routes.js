@@ -58,6 +58,15 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+//This will update a blog post
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        
+    } catch(err) {
+        res.status(400).json(err)
+    }
+})
+
 //This will delete a blog post
 router.delete('/:id', withAuth, async (req, res) => {
     try {
