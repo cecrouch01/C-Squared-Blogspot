@@ -61,7 +61,13 @@ router.post('/', withAuth, async (req, res) => {
 //This will update a blog post
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        
+        const updatedBlogPost = await BlogPost.findByPk(req.params.id, {
+            where: {
+                user_id: req.session.user_id,
+            }
+        })
+        await updatedBlogPost.update(req.body)
+        res.status(200).json(({ message: 'Blog has been updated'}))
     } catch(err) {
         res.status(400).json(err)
     }

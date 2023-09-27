@@ -32,7 +32,7 @@ async function addBlog(e) {
     if(addBlogResponse.ok){
         document.location.reload();
     } else {
-        alert("something went wrong");
+        alert("Oops something went wrong");
     }
 };
 
@@ -40,9 +40,18 @@ async function addBlog(e) {
 async function editBlog(idNum) {
     // const findBlogResponse = await fetch(`/api/blog-posts/${idNum}`);
     // const findBlog = await findBlogResponse.json()
-    const newTitle = document.querySelector(`#edit-title-${idNum}`).valuetitle;
+    const newTitle = document.querySelector(`#edit-title-${idNum}`).value;
     const newDescription = document.querySelector(`#edit-description-${idNum}`).value;
-    const editBlogResponse = await fetch()
+    const editBlogResponse = await fetch(`/api/blog-posts/${idNum}`, {
+        method: 'PUT',
+        body: JSON.stringify({title: newTitle, description: newDescription}),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    if(editBlogResponse.ok) {
+        document.location.reload();
+    } else {
+        alert("Oops something went wrong")
+    }
 };
 
 addBlogBtn.addEventListener('click', (e) => {
