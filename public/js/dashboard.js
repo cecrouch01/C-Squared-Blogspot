@@ -119,5 +119,5 @@ for(let l = 0; l < deleteBlogBtn.length; l++ ) {
     })
 }
 
-//delete a blog post
+
 //change title validation of Blog Post Model
