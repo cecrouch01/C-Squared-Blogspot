@@ -5,7 +5,8 @@ const blogTitleInput = document.getElementById('create-title');
 const blogDescriptionInput = document.getElementById('create-description');
 const editBlogBtns = document.querySelectorAll('.edit-blog-btn');
 const cancelEditBlog = document.querySelectorAll('.cancel-edit');
-const editBlogFrm = document.querySelectorAll('.edit-blog')
+const editBlogFrm = document.querySelectorAll('.edit-blog');
+const deleteBlogBtn = document.querySelectorAll('.delete-blog-btn');
 
 //This changes the button ID
 function showForm(form, button) {
@@ -54,6 +55,18 @@ async function editBlog(idNum) {
     }
 };
 
+async function deleteBlog(idNum) {
+    const deleteBlogRepsonse = await fetch(`/api/blog-posts/${idNum}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    if(deleteBlogRepsonse.ok) {
+        document.location.reload();
+    } else {
+        alert("Oops something went wrong")
+    }
+};
+
 addBlogBtn.addEventListener('click', (e) => {
     e.preventDefault();
     showForm(blogForm, addBlogBtn )
@@ -72,7 +85,7 @@ for(let i = 0; i < editBlogBtns.length; i++){
         e.preventDefault();
         showForm(editBlogForm, editBlogBtns[i])
     })
-}
+};
 
 for(let j = 0; j < cancelEditBlog.length; j++) {
     const cancelIDString = cancelEditBlog[j].getAttribute('id');
@@ -85,7 +98,7 @@ for(let j = 0; j < cancelEditBlog.length; j++) {
     const editButton = document.getElementById(cancelIDNumber);
         cancelForm(editBlogForm, editFormTitle, editFormDescription, editButton);
     });
-}
+};
 
 for(let k = 0; k < editBlogFrm.length; k++) {
     const editIDString = editBlogFrm[k].getAttribute('id');
@@ -94,8 +107,17 @@ for(let k = 0; k < editBlogFrm.length; k++) {
         e.preventDefault();
         editBlog(editIDNumber);
     })
+};
+
+for(let l = 0; l < deleteBlogBtn.length; l++ ) {
+    const deleteIDString = deleteBlogBtn[l].getAttribute('id');
+    const deleteIDNumber = deleteIDString.replace('delete-', '')
+    console.log(deleteIDNumber)
+    deleteBlogBtn[l].addEventListener('click', (e) => {
+        e.preventDefault();
+        deleteBlog(deleteIDNumber);
+    })
 }
 
-//Edit a blog post
 //delete a blog post
 //change title validation of Blog Post Model
