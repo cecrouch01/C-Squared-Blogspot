@@ -1,32 +1,34 @@
-<div class="card blog">
-    <div class="card-header">
-        {{blog.user.username}}
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">{{blog.title}}</h5>
-        <p class="card-text">{{blog.description}}</p>
-    </div>
-     {{#each blog.comments}}
-    <div class="card comments" style="width: 18rem;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item comments-user">{{this.user.username}}</li>
-            <p class="card-text comments-content">{{this.content}}</p>
-            <p class="card-text comments-date">{{format_date this.date_created}}</p>
-        </ul>
-    </div>
-     {{/each}}
-</div>
-<div class="card comment" id='comment-div'>
-  <div class="card-body">
-    <form id="comment-form">
-        <div class="mb-3">
-            <label for="create-comment" class="form-label"></label>
-            <input type="text" class="form-control" id="create-comment" name="comments" placeholder="Write a comment..."
-                required>
+<div id="blog-page">
+    <div class="card blog">
+        <div class="card-header">
+            {{blog.user.username}}
         </div>
-        <input type="hidden" name="action" id="blog-id" value={{blog.id}}>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+        <div class="card-body">
+            <h5 class="card-title">{{blog.title}}</h5>
+            <p class="card-text">{{blog.description}}</p>
+        </div>
+        {{#each blog.comments}}
+        <div class="card comments">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item comments-user">{{this.user.username}}</li>
+                <p class="card-text comments-content">{{this.content}}</p>
+                <p class="card-text comments-date">{{format_date this.date_created}}</p>
+            </ul>
+        </div>
+        {{/each}}
+    </div>
+    <div class="card comment" id='comment-div'>
+        <div class="card-body">
+            <form id="comment-form">
+                <div class="mb-3">
+                    <label for="create-comment" class="form-label"></label>
+                    <input type="text" class="form-control" id="create-comment" name="comments"
+                        placeholder="Write a comment..." required>
+                </div>
+                <input type="hidden" name="action" id="blog-id" value={{blog.id}}>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 <script src="/js/blog.js"></script>
