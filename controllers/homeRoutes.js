@@ -35,7 +35,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
         }
     });
     const userBlogs = userBlogPostData.map((ub) => ub.get({ plain: true }))
-    console.log(userBlogs)
     res.render('dashboard', {
         userBlogs,
         logged_in: req.session.logged_in
@@ -62,7 +61,6 @@ router.get('/blog/:id', withAuth, async (req, res) => {
             ]
         })
         const blog = singleBlogPost.get({ plain: true })
-        console.log(blog)
         res.render('blog', {
             blog,
             logged_in: req.session.logged_in

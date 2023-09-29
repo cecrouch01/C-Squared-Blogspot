@@ -1,14 +1,11 @@
-<div class="card">
-    <div class="card-header">
-        {{#each userBlogs}}
-        <h4>{{this.user.username}}'s Blogs</h2>
-            {{/each}}
-    </div>
+<div id="banner">
+    {{#each userBlogs}}
+    <h4>{{this.user.username}}'s Blogs</h2>
+    {{/each}}
 </div>
-
 <div class="row">
-        <div class="col-md-4">
-        <div class="card" style="width: 18rem;">
+    <div class="col-md-4">
+        <div class="card crte-blg" >
             <div class="card-body">
                 <h4 class="card-title">Create a New Blog</h5>
                     <p class="card-text">To create a new blog click on the button below.</p>
@@ -33,7 +30,7 @@
     </div>
     <div class="col-md-7">
         {{#each userBlogs}}
-        <div class="card text-center">
+        <div class="card text-center dsh-blg">
             <div class="card-header">
                 {{this.title}}
             </div>
