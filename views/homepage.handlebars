@@ -1,11 +1,15 @@
 {{#each blogs }}
-<a href="/blog/{{id}}">
-    <div>
-        <h2> {{title}} </h2>
-        <h2> {{description}} </h2>
-        <h2> {{user.username}} </h2>
-        <h2> {{date_created}} </h2>
-        <h2>{{logged_in}}</h2>
-    </div>
-</a>
+<div class="card text-center">
+  <div class="card-header">
+    {{user.username}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-text">{{description}}</p>
+    <a href="/blog/{{id}}" class="btn btn-primary">Read Blog</a>
+  </div>
+  <div class="card-footer text-body-secondary">
+    Date Created: {{format_date date_created}}
+  </div>
+</div>
 {{/each}}
