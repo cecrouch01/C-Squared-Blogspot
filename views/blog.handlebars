@@ -1,28 +1,32 @@
-<h2>This is blog</h2>
-<h3>{{blog.id}} </h3>
-<h3> title: {{blog.title}} </h3>
-<h3> description: {{blog.description}} </h3>
-<h3> date create: {{blog.date_created}}</h3>
-<h3> user_id: {{blog.user_id}} </h3>
-<h3> blogauthor username: {{blog.user.username}} </h3>
-<h3>Comments: </h3>
-<ul>
-    {{#each blog.comments}}
-    <li>id: {{this.id}}</li>
-    <li>content: {{this.content}}</li>
-    <li>date_created: {{this.date_created}} </li>
-    <li>user_id: {{this.user_id}} </li>
-    <li>username: {{this.user.username}} </li>
-    {{/each}}
-</ul>
-<div id='comment-div' class="comment">
-    <form id="comment-form">
-    <div class="mb-3">
-        <label for="create-comment" class="form-label"></label>
-        <input type="text" class="form-control" id="create-comment" name="comments" placeholder="Write a comment..." required>
+<div class="card blog">
+    <div class="card-header">
+        {{blog.user.username}}
     </div>
-     <input type="hidden" name="action" id="blog-id" value={{blog.id}}>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="card-body">
+        <h5 class="card-title">{{blog.title}}</h5>
+        <p class="card-text">{{blog.description}}</p>
+    </div>
+     {{#each blog.comments}}
+    <div class="card comments" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item comments-user">{{this.user.username}}</li>
+            <p class="card-text comments-content">{{this.content}}</p>
+            <p class="card-text comments-date">{{format_date this.date_created}}</p>
+        </ul>
+    </div>
+     {{/each}}
+</div>
+<div class="card comment" id='comment-div'>
+  <div class="card-body">
+    <form id="comment-form">
+        <div class="mb-3">
+            <label for="create-comment" class="form-label"></label>
+            <input type="text" class="form-control" id="create-comment" name="comments" placeholder="Write a comment..."
+                required>
+        </div>
+        <input type="hidden" name="action" id="blog-id" value={{blog.id}}>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+  </div>
 </div>
 <script src="/js/blog.js"></script>

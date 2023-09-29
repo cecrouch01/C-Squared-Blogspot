@@ -24,12 +24,18 @@ router.get('/', async (req, res) => {
 
 router.get('/dashboard', withAuth, async (req, res) => {
     const userBlogPostData = await BlogPost.findAll({
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            },
+        ],
         where: {
             user_id: req.session.user_id
         }
     });
     const userBlogs = userBlogPostData.map((ub) => ub.get({ plain: true }))
-    
+    console.log(userBlogs)
     res.render('dashboard', {
         userBlogs,
         logged_in: req.session.logged_in
