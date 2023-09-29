@@ -1,39 +1,71 @@
-{{#each userBlogs}}
-<h3> id: {{this.id}}</h3>
-<h3>Title: {{this.title}} </h3>
-<h3> Description: {{this.description}}</h3>
-<h3> user_id: {{this.user_id}}</h3>
-<h3> date_created: {{format_date this.date_created}}</h3>
-    <form id="edit-blog-{{this.id}}" class="edit-blog">
-        <h4 id="blog-form-title">Edit Blog</h4>
-    <div class="mb-3">
-        <label for="edit-title-{{this.id}}" id="blog-form-title-label" class="form-label"></label>
-        <input type="text" class="form-control" id="edit-title-{{this.id}}" name="title" placeholder="Write a title" required>
+<div class="card">
+    <div class="card-header">
+        {{#each userBlogs}}
+        <h4>{{this.user.username}}'s Blogs</h2>
+            {{/each}}
     </div>
-    <div class="mb-3">
-        <label for="edit-description-{{this.id}}" id="blog-form-description-label" class="form-label"></label>
-        <input type="text" class="form-control" id="edit-description-{{this.id}}" name="description" placeholder="Write a description..." required>
+</div>
+
+<div class="row">
+        <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title">Create a New Blog</h5>
+                    <p class="card-text">To create a new blog click on the button below.</p>
+                    <form id="blog-form">
+                        <h4 id="blog-form-title">Create a Blog</h4>
+                        <div class="mb-3">
+                            <label for="create-title" id="blog-form-title-label" class="form-label"></label>
+                            <input type="text" class="form-control" id="create-title" name="title"
+                                placeholder="Write a title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="create-description" id="blog-form-description-label" class="form-label"></label>
+                            <input type="text" class="form-control" id="create-description" name="description"
+                                placeholder="Write a description..." required>
+                        </div>
+                        <button type="submit" class="btn btn-primary blog-btn">Submit</button>
+                        <button type="button" id="cancel" class="btn btn-secondary cancel">Cancel</button>
+                    </form>
+                    <button type="button" id="add-blog" class="btn btn-primary">Write Blog</button>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary blog-btn">Submit</button>
-    <button type="button" id="cancel-{{this.id}}"class="btn btn-secondary cancel-edit">Cancel</button>
-    </form>
-    <button type="button" id={{this.id}} class="btn btn-primary edit-blog-btn">Edit Blog</button>
-    <button type="button" id="delete-{{this.id}}" class="btn btn-primary delete-blog-btn">Delete Blog</button>
-{{/each}}
-    <form id="blog-form">
-        <h4 id="blog-form-title">Create a Blog</h4>
-    <div class="mb-3">
-        <label for="create-title" id="blog-form-title-label" class="form-label"></label>
-        <input type="text" class="form-control" id="create-title" name="title" placeholder="Write a title" required>
+    <div class="col-md-7">
+        {{#each userBlogs}}
+        <div class="card text-center">
+            <div class="card-header">
+                {{this.title}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{format_date this.date_created}}</h5>
+                <p class="card-text">{{this.description}}</p>
+            </div>
+            <div class="card-footer text-body-secondary">
+                <form id="edit-blog-{{this.id}}" class="edit-blog">
+                    <h4 id="blog-form-title">Edit Blog</h4>
+                    <div class="mb-3">
+                        <label for="edit-title-{{this.id}}" id="blog-form-title-label" class="form-label"></label>
+                        <input type="text" class="form-control" id="edit-title-{{this.id}}" name="title"
+                            placeholder="Write a title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-description-{{this.id}}" id="blog-form-description-label"
+                            class="form-label"></label>
+                        <input type="text" class="form-control" id="edit-description-{{this.id}}" name="description"
+                            placeholder="Write a description..." required>
+                    </div>
+                    <button type="submit" class="btn btn-primary blog-btn">Submit</button>
+                    <button type="button" id="cancel-{{this.id}}" class="btn btn-secondary cancel-edit">Cancel</button>
+                </form>
+                <button type="button" id={{this.id}} class="btn btn-primary edit-blog-btn">Edit Blog</button>
+                <button type="button" id="delete-{{this.id}}" class="btn btn-primary delete-blog-btn">Delete
+                    Blog</button>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="create-description" id="blog-form-description-label" class="form-label"></label>
-        <input type="text" class="form-control" id="create-description" name="description" placeholder="Write a description..." required>
-    </div>
-    <button type="submit" class="btn btn-primary blog-btn">Submit</button>
-    <button type="button" id="cancel" class="btn btn-secondary cancel">Cancel</button>
-    </form>
-    <button type="button" id="add-blog" class="btn btn-primary">Add Blog</button>
-    
+    {{/each}}
+</div>
+
 
 <script src="/js/dashboard.js"></script>
